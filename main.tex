@@ -142,7 +142,7 @@
     \def\lt{<}
     % Document parameters
     
-\title{My first data analysis example}
+\title{Integrating Jupyter Notebooks and Overleaf for seamless data science workflows}
 
     
     
@@ -284,20 +284,36 @@
     
 
     
-    \subsection{Why and how are we doing
-this?}\label{why-and-how-are-we-doing-this}
+    \subsection{Data science workflow with Jupyter and Overleaf v2, Part I:
+setup}\label{data-science-workflow-with-jupyter-and-overleaf-v2-part-i-setup}
 
-Jupyter is a powerful tool to work with data and text; Jupyter uses the
-markdown format to write text \cite{perez2015}.
+\href{https://jupyter.org/}{Jupyter} is a tool to work with data and
+text; Jupyter uses the markdown format to write text, and you can use
+markdown to write text in Jupyter and then convert the text to html and
+latex for outputs. If you use \href{http://pandoc.org}{Pandoc}, you can
+stretch the range of outputs to other formats (see the pandoc website
+for more options).
 
-Overleaf is a webapp that uses latex to output text. The purpose of this
-workflow is to show that it is possible to create a repo using Overleaf,
-then work using Jupyter and then using Jupyter, you can push a latex
-documen back to Overleaf. Overleaf -\textgreater{} github
--\textgreater{} Jupyter notebook -\textgreater{} latex -\textgreater{}
-Overleaf
+\href{http://www.overleaf.com}{Overleaf} is a webapp that uses latex to
+output text. Recently Overelaf released their
+\href{http://v2.overleaf.com}{Version 2 of the webapp}; this version is
+still in beta; but a good feature of Overleaf's new version is
+integration with github. Jupyter+Github+Overleaf provides a way to write
+in Jupyter, share the notebook in github where you can maintain code and
+show the code outputs (using binder.org), and you can share a final
+draft of the work and collaborate with others using a PDF document. If
+you use the PDF document to share your idea in the form of preprints,
+you can seamlessly integrate a workflow with your data analysis.
 
-This is an example. Here are the steps:
+Here's my workflow is to show that it is possible to create a repo using
+Overleaf, then work using Jupyter and then, using Jupyter, you can push
+a latex document back to Overleaf.
+
+Basically,
+\texttt{Overleaf\ -\textgreater{}\ github\ -\textgreater{}\ Jupyter\ notebook\ -\textgreater{}\ latex\ -\textgreater{}\ Overleaf}
+
+This is an example. For the first time you set up the workflow, you do
+the following:
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -309,20 +325,118 @@ This is an example. Here are the steps:
 \item
   Link the project to \href{http://www.github.com}{github}
 \item
-  On your PC, create a new folder, cd into it, and do:
+  On your PC, create a new folder, \texttt{cd} into it, and do:
   \texttt{git\ init;\ git\ remote\ add\ origin\ \{URL\ of\ the\ github\ repo\}}
 \item
   Then in the same folder start a jupyter file and name it as
-  \texttt{main.ipynb}
+  \texttt{main.ipynb} (this is not needed; it is my shortcut, you can
+  name your file anything indeed).
 \item
-  Write your content and run your analyses in Jupyter
+  Write your content and run your analyses in Jupyter.
 \item
-  Then, when you are done with your analyses, export the contents of
-  file to github repo but first convert the ipynb to latex.
+  Create a special tplx file to modify the latex outputs from jupyter
+  notebooks
+\item
+  Then, when you are done with your analyses, convert the jupyter
+  notebook to a latex file.
+\item
+  Then export the contents of file to github repo but first convert the
+  ipynb to latex.
+\item
+  Finally, pull the contents of the github to Overleaf.
 \end{enumerate}
 
+In subsequent stages, all you do is to write or edit the document in
+Jupyter, convert to latex, push it to github, and pull it in from
+Overleaf.
+
+What this process does obviously sets up a one way push from Jupyter
+notebook to Overleaf. At this time it is not possible to set up a
+reverse transformation from latex to jupyter notebook formats. But there
+are several ways in which a jupyter notebook format allows for nice
+integration between code, text and harnesses the power of Overleaf.
+
+\subsection{Requirements}\label{requirements}
+
+For this to work, you will need a working copy each of the following:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  You will need Jupyter notebook installed
+\item
+  You will need Pandoc installed
+\item
+  If you also want to see how the PDF will appear locally once rendered,
+  you will need a copy of LaTeX software for your platform
+\item
+  Finally, you will need Git for this to work.
+\end{enumerate}
+
+\subsection{A few other things}\label{a-few-other-things}
+
+In an academic article, we tend to do following:
+
+\begin{itemize}
+\tightlist
+\item
+  We write in chunks and paragraphs. We move around the paragraphs etc.
+  All of these are already built in Jupyter and helps.
+\item
+  Lists, are supported off the box.
+\end{itemize}
+
+\subsubsection{Writing tables}\label{writing-tables}
+
+For tables, you can use Markdown tables in Jupyter. For outputs of
+analyses you use R and use \href{https://yihui.name/knitr}{knitr
+package}, yoou can write codes in R and output neat markdown tables that
+will be correctly rendered in LaTeX. I you use Python, you can use
+\href{https://github.com/thombashi/pytablewriter}{pytablewriter}
+
+\subsubsection{Inserting Citations}\label{inserting-citations}
+
+Use a bibtex file (a file with extension \texttt{.bib}) to work with.
+Most reference managers will output a bibtex file, and I find
+\href{http://www.jabref.org}{Jabref} very useful in managing bibtex
+files. You can use \href{http://www.zotero.org}{Zotero} as well. Google
+scholar provides bibtex file support. Here are the steps:
+
+\begin{itemize}
+\tightlist
+\item
+  Create a bibtex file first and store in the folder where your latex
+  file lies
+\item
+  Where you want to insert the citation, do \cite{perez2015}, where
+  citationID = ID code of the citation or reference
+\item
+  Create a template.tplx file. It is a plain text file. I call my
+  template expander file as temp.tplx. Modify the block of bibliography
+  as I have shown below. Substitute this with your own bibtex file.
+\item
+  When you convert from ipynb to latex, let Jupyter know the template,
+  see the conversion example below.
+\end{itemize}
+
+\subsection{Next Steps}\label{next-steps}
+
+First, Jupyter is versatile in being simple and in weaving code and text
+seamlessly using Markdown and at least three languages (R, Julia, and
+Python) and you can seamlessly change between them. Second, using github
+as an intermediate channel, you can share the python notebooks via
+\href{http://mybinder.org}{mybinder.org} and this way, you can share a
+notebook for wider audience and channel a tidy PDF version that you can
+publish as preprint. You can also collaborate with others on the LaTeX
+version as the final production version of tables and graphs while
+keeping the production version of the notebook. While notebooks are
+useful in their own ways, a text based PDF-ised version with a LaTeX
+backend is often easy to read. In part II of this series, I will explore
+doing data analysis in Jupyter and writing about it in Overleaf.
+
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}9}]:} \PY{o}{\PYZpc{}\PYZpc{}}\PY{k}{writefile} temp.tplx
+{\color{incolor}In [{\color{incolor} }]:} \PY{o}{\PYZpc{}\PYZpc{}}\PY{k}{writefile} temp.tplx
         ((*\PYZhy{} extends \PYZsq{}article.tplx\PYZsq{} \PYZhy{}*))
         
         ((* block author *))
@@ -341,21 +455,10 @@ This is an example. Here are the steps:
 
 
     \begin{Verbatim}[commandchars=\\\{\}]
-Overwriting temp.tplx
-
-    \end{Verbatim}
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}10}]:} \PYZpc{}\PYZpc{}bash
-         jupyter nbconvert \PYZhy{}\PYZhy{}to latex \PYZhy{}\PYZhy{}template temp main.ipynb
+{\color{incolor}In [{\color{incolor} }]:} \PYZpc{}\PYZpc{}bash
+        jupyter nbconvert \PYZhy{}\PYZhy{}to latex \PYZhy{}\PYZhy{}template temp main.ipynb
 \end{Verbatim}
 
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-[NbConvertApp] Converting notebook main.ipynb to latex
-[NbConvertApp] Writing 17771 bytes to main.tex
-
-    \end{Verbatim}
 
 
     % Add a bibliography block to the postdoc

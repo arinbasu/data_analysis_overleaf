@@ -5,7 +5,7 @@
 ((* endblock author *))
 
 ((* block title *))
-\title{My first data analysis example}
+\title{Integrating Jupyter Notebooks and Overleaf for seamless data science workflows}
 ((* endblock title *))
 
 ((* block bibliography *))
