@@ -288,14 +288,12 @@
 this?}\label{why-and-how-are-we-doing-this}
 
 Jupyter is a powerful tool to work with data and text; Jupyter uses the
-markdown format to write text \cite{perez2015}.
-
-Overleaf is a webapp that uses latex to output text. The purpose of this
-workflow is to show that it is possible to create a repo using Overleaf,
-then work using Jupyter and then using Jupyter, you can push a latex
-documen back to Overleaf. Overleaf -\textgreater{} github
--\textgreater{} Jupyter notebook -\textgreater{} latex -\textgreater{}
-Overleaf
+markdown format to write text \cite{perez2015}. Overleaf is a webapp
+that uses latex to output text. The purpose of this workflow is to show
+that it is possible to create a repo using Overleaf, then work using
+Jupyter and then using Jupyter, you can push a latex documen back to
+Overleaf. Overleaf -\textgreater{} github -\textgreater{} Jupyter
+notebook -\textgreater{} latex -\textgreater{} Overleaf
 
 This is an example. Here are the steps:
 
@@ -322,7 +320,7 @@ This is an example. Here are the steps:
 \end{enumerate}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}9}]:} \PY{o}{\PYZpc{}\PYZpc{}}\PY{k}{writefile} temp.tplx
+{\color{incolor}In [{\color{incolor} }]:} \PY{o}{\PYZpc{}\PYZpc{}}\PY{k}{writefile} temp.tplx
         ((*\PYZhy{} extends \PYZsq{}article.tplx\PYZsq{} \PYZhy{}*))
         
         ((* block author *))
@@ -341,21 +339,10 @@ This is an example. Here are the steps:
 
 
     \begin{Verbatim}[commandchars=\\\{\}]
-Overwriting temp.tplx
-
-    \end{Verbatim}
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}10}]:} \PYZpc{}\PYZpc{}bash
-         jupyter nbconvert \PYZhy{}\PYZhy{}to latex \PYZhy{}\PYZhy{}template temp main.ipynb
+{\color{incolor}In [{\color{incolor} }]:} \PYZpc{}\PYZpc{}bash
+        jupyter nbconvert \PYZhy{}\PYZhy{}to latex \PYZhy{}\PYZhy{}template temp main.ipynb
 \end{Verbatim}
 
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-[NbConvertApp] Converting notebook main.ipynb to latex
-[NbConvertApp] Writing 17771 bytes to main.tex
-
-    \end{Verbatim}
 
 
     % Add a bibliography block to the postdoc

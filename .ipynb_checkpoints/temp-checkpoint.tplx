@@ -1,0 +1,14 @@
+((*- extends 'article.tplx' -*))
+
+((* block author *))
+\author{Arindam Basu}
+((* endblock author *))
+
+((* block title *))
+\title{My first data analysis example}
+((* endblock title *))
+
+((* block bibliography *))
+\bibliographystyle{apalike}
+\bibliography{refs}
+((* endblock bibliography *))
